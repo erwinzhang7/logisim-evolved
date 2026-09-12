@@ -1,0 +1,168 @@
+Gates	NOT Gate	-1	-	facing,width,size,out,label,labelfont
+Gates	Buffer	2	OUT:0,IN:0	facing,width,out,label,labelfont
+Gates	AND Gate	-1	-	facing,width,size,inputs,out,label,labelfont,negate0,negate1
+Gates	OR Gate	-1	-	facing,width,size,inputs,out,label,labelfont,negate0,negate1
+Gates	NAND Gate	-1	-	facing,width,size,inputs,out,label,labelfont,negate0,negate1
+Gates	NOR Gate	-1	-	facing,width,size,inputs,out,label,labelfont,negate0,negate1
+Gates	XOR Gate	-1	-	facing,width,size,inputs,out,label,labelfont,xor,negate0,negate1
+Gates	XNOR Gate	-1	-	facing,width,size,inputs,out,label,labelfont,xor,negate0,negate1
+Gates	Odd Parity	-1	-	facing,width,size,inputs,out,label,labelfont,negate0,negate1
+Gates	Even Parity	-1	-	facing,width,size,inputs,out,label,labelfont,negate0,negate1
+Gates	Controlled Buffer	-1	-	facing,width,control,label,labelfont
+Gates	Controlled Inverter	-1	-	facing,width,size,control,label,labelfont
+Gates	PLA	-1	-	facing,in_width,out_width,table,label,labelloc,labelfont
+Wiring	Splitter	-1	?	facing,fanout,incoming,appear,spacing,bit0,bit1
+Wiring	Pin	-1	-	facing,type,width,behavior,label,labelloc,labelfont,radix,appearance,initial
+Wiring	Probe	-1	-	facing,radix,label,labelloc,labelfont,appearance
+Wiring	Tunnel	-1	-	facing,width,label,labelfont
+Wiring	Pull Resistor	-1	-	facing,pull
+Wiring	Clock	-1	-	facing,highDuration,lowDuration,phaseOffset,label,labelloc,labelfont,appearance
+Wiring	POR	-1	-	facing,porsize,porTransition,PorHighDuration
+Wiring	Constant	-1	-	facing,width,value
+Wiring	Power	1	OUT:0	facing,width
+Wiring	Ground	1	OUT:0	facing,width
+Wiring	NoConnect	1	INOUT:0	width
+Wiring	Transistor	-1	-	type,facing,selloc,width
+Wiring	Transmission Gate	-1	-	facing,selloc,width
+Wiring	Bit Extender	-1	-	in_width,out_width,type
+Plexers	Multiplexer	-1	-	facing,size,selloc,select,width,disabled,enable
+Plexers	Demultiplexer	-1	-	facing,selloc,select,width,tristate,disabled,enable
+Plexers	Decoder	-1	-	facing,selloc,select,tristate,disabled,enable
+Plexers	Priority Encoder	-1	-	facing,select,disabled
+Plexers	BitSelector	-1	-	facing,selloc,width,group,dummy,dummy
+Arithmetic	Adder	5	IN:0,IN:0,OUT:0,IN:1,OUT:1	width
+Arithmetic	Subtractor	5	IN:0,IN:0,OUT:0,IN:1,OUT:1	width
+Arithmetic	Multiplier	5	IN:0,IN:0,OUT:0,IN:0,OUT:0	width,mode
+Arithmetic	Divider	5	IN:0,IN:0,OUT:0,IN:0,OUT:0	width,mode
+Arithmetic	Negator	2	IN:0,OUT:0	width
+Arithmetic	Exponentiator	4	IN:0,IN:0,OUT:0,OUT:0	width,mode
+Arithmetic	SquareRoot	4	IN:0,OUT:0,IN:0,OUT:0	width
+Arithmetic	Absolute	3	IN:0,OUT:0,OUT:1	width
+Arithmetic	Comparator	5	IN:0,IN:0,OUT:1,OUT:1,OUT:1	width,mode
+Arithmetic	MinMax	4	IN:0,IN:0,OUT:0,OUT:0	width,mode
+Arithmetic	Shifter	-1	-	width,shift,dummy
+Arithmetic	BitAdder	-1	-	width,inputs
+Arithmetic	BitFinder	-1	-	width,type
+FPArithmetic	FPAdder	4	IN:0,IN:0,OUT:0,OUT:1	fpwidth
+FPArithmetic	FPSubtractor	4	IN:0,IN:0,OUT:0,OUT:1	fpwidth
+FPArithmetic	FPMultiplier	-1	-	fpwidth,multiplyMode
+FPArithmetic	FPDivider	5	IN:0,IN:0,OUT:0,OUT:0,OUT:1	fpwidth
+FPArithmetic	FPNegator	3	IN:0,OUT:0,OUT:1	fpwidth
+FPArithmetic	FPExponentiator	-1	-	fpwidth,mode
+FPArithmetic	FPLogarithm	-1	-	fpwidth,mode
+FPArithmetic	FPSquareRoot	3	IN:0,OUT:0,OUT:1	fpwidth
+FPArithmetic	FPAbsolute	3	IN:0,OUT:0,OUT:1	fpwidth
+FPArithmetic	FPComparator	6	IN:0,IN:0,OUT:1,OUT:1,OUT:1,OUT:1	fpwidth
+FPArithmetic	FPMinMax	5	IN:0,IN:0,OUT:0,OUT:0,OUT:1	fpwidth
+FPArithmetic	FPRound	3	IN:0,OUT:0,OUT:1	fpwidth,mode
+FPArithmetic	FPTrigonometry	5	IN:0,IN:0,OUT:0,OUT:0,OUT:1	fpwidth,type
+FPArithmetic	FPClassificator	7	IN:0,OUT:1,OUT:1,OUT:1,OUT:1,OUT:1,OUT:1	fpwidth
+FPArithmetic	FPToFP	-1	-	fpwidthin,fpwidthout
+FPArithmetic	FPToInt	3	IN:0,OUT:0,OUT:1	width,fpwidth,mode
+FPArithmetic	IntToFP	3	IN:0,OUT:0,OUT:1	width,fpwidth,mode
+Memory	D Flip-Flop	-1	-	trigger,label,labelfont,appearance
+Memory	T Flip-Flop	-1	-	trigger,label,labelfont,appearance
+Memory	J-K Flip-Flop	-1	-	trigger,label,labelfont,appearance
+Memory	S-R Flip-Flop	-1	-	trigger,label,labelfont,appearance
+Memory	Register	-1	-	width,trigger,label,labelloc,labelfont,showInTab,appearance
+Memory	Counter	-1	-	width,max,ongoal,trigger,label,labelfont,labelloc,showInTab,appearance
+Memory	Shift Register	-1	-	width,length,parallel,trigger,label,labelfont,appearance
+Memory	Random	-1	-	width,seed,trigger,label,labelfont,appearance
+Memory	RAM	-1	-	addrWidth,dataWidth,enables,type,clearpin,trigger,asyncread,readbehav,databus,label,labelfont,labelvisible,appearance
+Memory	ROM	-1	-	addrWidth,dataWidth,line,misaligned,contents,label,labelfont,labelvisible,appearance
+Memory	DualRAM	-1	-	addrWidth,dataWidth,enables,type,clearpin,trigger,asyncread,readbehav,databus,label,labelfont,labelvisible,appearance
+I/O	Button	1	OUT:1	facing,color,press,label,labelloc,labelfont,labelcolor,labelvisible,dummy
+I/O	DipSwitch	-1	-	facing,label,labelloc,labelfont,labelcolor,labelvisible,number,dummy
+I/O	Joystick	2	OUT:0,OUT:0	facing,bits,color,bg
+I/O	Keyboard	5	IN:1,IN:1,IN:1,OUT:1,OUT:7	buflen,trigger
+I/O	LED	1	IN:1	facing,color,offcolor,active,label,labelloc,labelfont,labelcolor,labelvisible,dummy
+I/O	LedBar	-1	-	inputtype,matrixcols,matrixrows,selloc,color,offcolor,persist,dotshape,label,labelloc,labelfont,labelcolor,labelvisible,dummy
+I/O	RGBLED	-1	-	facing,active,label,labelloc,labelfont,labelcolor,labelvisible,dummy
+I/O	7-Segment Display	-1	-	color,offcolor,bg,active,decimalPoint,label,labelloc,labelfont,labelvisible,dummy
+I/O	Hex Digit Display	-1	-	color,offcolor,bg,decimalPoint,label,labelloc,labelfont,labelvisible,dummy
+I/O	DotMatrix	-1	-	inputtype,matrixcols,matrixrows,selloc,color,offcolor,persist,dotshape,label,labelloc,labelfont,labelcolor,labelvisible,dummy
+I/O	TTY	4	IN:1,IN:1,IN:1,IN:7	rows,cols,trigger,color,bg
+I/O	PortIO	-1	-	facing,label,labelloc,labelfont,labelcolor,labelvisible,number,direction,dummy
+I/O	ReptarLB	10	OUT:1,OUT:1,OUT:1,OUT:1,IN:1,OUT:16,IN:16,IN:1,OUT:9,IN:1	label,dummy
+I/O	Telnet	6	IN:8,OUT:8,IN:1,IN:1,IN:1,OUT:1	telnetMode,port,buflen,trigger,label,labelloc,labelfont
+I/O	RGB Video	-1	?	cursor,reset,color,resolution,width,height,scale,dummy
+TTL	7400	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7402	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7404	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7408	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7410	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7411	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7413	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7414	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7418	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7419	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7420	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7421	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7424	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7427	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7430	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7432	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7434	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7436	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7442	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7443	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7444	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7447	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7451	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7454	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7458	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7464	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7474	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7485	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7486	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	7487	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74125	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74138	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74139	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74151	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74153	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74157	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74158	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74161	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74163	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74164	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74165	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74166	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74175	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74181	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74182	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74192	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74193	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74194	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74240	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74241	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74244	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74245	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74266	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74273	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74283	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74299	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74377	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74381	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74541	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	74670	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+TTL	747266	-1	-	facing,VccGndPorts,ShowInternalStructure,label
+HDL-IP	VHDL Entity	-1	-	content,label,labelfont,labelvisible,vhdlSimName
+HDL-IP	BLIFCircuit	-1	-	content,label,labelfont,labelvisible
+TCL	TclConsoleReds	42	IN:4,IN:4,IN:1,IN:1,IN:1,IN:1,IN:1,IN:1,IN:1,IN:1,IN:1,IN:1,IN:1,IN:1,IN:1,IN:1,IN:1,IN:1,IN:16,IN:16,IN:8,IN:1,IN:1,OUT:1,OUT:1,OUT:1,OUT:1,OUT:1,OUT:1,OUT:1,OUT:1,OUT:1,OUT:1,OUT:1,OUT:1,OUT:1,OUT:1,OUT:1,OUT:1,OUT:16,OUT:16,OUT:1	filePath,label,labelfont
+TCL	TclGeneric	-1	-	filePath,content,label,labelfont
+BFH-Praktika	Binary_to_BCD_converter	-1	-	binvalue
+BFH-Praktika	BCD_to_7_Segment_decoder	8	OUT:1,OUT:1,OUT:1,OUT:1,OUT:1,OUT:1,OUT:1,IN:4	dummy
+Input/Output-Extra	Switch	-1	-	facing,width,color,label,labelloc,labelfont
+Input/Output-Extra	Buzzer	-1	-	facing,selloc,freq_measure,vol_width,label,labelfont,waveform,channel,smooth_level,smooth_width
+Input/Output-Extra	Slider	1	OUT:1	facing,width,radix,color,label,labelfont,labelvisible,Direction
+Input/Output-Extra	Digital Oscilloscope	-1	-	inputs,nState,frontlines,showclock,color,label,labelloc,labelfont
+Input/Output-Extra	PlaRom	-1	-	inputs,and,outputs,label,labelfont,labelvisible,Contents,Select
+Soc	Rv32im	-1	-	resetVector,irqWidth,plicBaseAddress,stateVisible,label,labelfont,labelvisible,SocBusSelection,dummy,dummy
+Soc	Nios2	-1	-	resetVector,exceptionVector,breakVector,irqWidth,stateVisible,label,labelfont,labelvisible,SocBusSelection,dummy
+Soc	SocBus	-1	-	TraceSize,TraceVisible,label,labelfont,labelvisible,SocBusIdentifier
+Soc	Socmem	-1	-	StartAddress,MemSize,label,labelfont,labelvisible,SocBusSelection,dummy
+Soc	SocPio	-1	-	StartAddress,width,direction,inputssynccapt,genirq,label,labelfont,labelvisible,SocBusSelection,dummy
+Soc	SocVga	-1	-	StartAddress,DisplayMode,BufferAddress,soft160x120,soft320x240,soft640x480,soft800x600,soft1024x768,label,labelfont,labelvisible,SocBusSelection,dummy
+Soc	SocDma	-1	-	StartAddress,BurstSize,label,labelfont,labelvisible,SocBusSelection,DmaSrcBus,DmaDstBus,dummy
+Soc	SocJtagUart	-1	-	StartAddress,WriteFifoSize,WriteThreshold,ReadFifoSize,ReadThreshold,label,labelfont,labelvisible,SocBusSelection,dummy

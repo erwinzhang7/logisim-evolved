@@ -1,0 +1,69 @@
+# A labelled REGISTER — board #78's contribution to the edit-parity gate.
+#
+# The first script in this gate that places a MEMORY component and the first that carries a
+# LABEL at all. `editparity.py`'s masking section says in so many words that "the placed
+# components carry no labels", which is why the `labelfont` mask has never had a chance to fire
+# here; after this script it does have one, and if it ever fires it is reported loudly rather
+# than folded into the pass count, exactly as that header requires.
+#
+# WHAT IT COVERS
+#   * `toolattr label` -> a Register placed with its label already set, i.e. the tool-attribute
+#     path (#77) reaching a memory factory rather than a gate.
+#   * `setattr label` -> the label rewritten through the real attribute table
+#     (`EditBridgeAttrTable` on the Java side, the same `SetAttributeAction` shape on this one).
+#   * `setattr labelloc` -> `StdAttr.LABEL_LOC`, the attribute `Register.labelPlacement` reads
+#     through `computeLabelTextField(AVOID_SIDES)` (Register.java:254, :361, :363). This port
+#     models it as a file-local `Attribute<AttributeOption>` rather than `StdAttr.labelLocation`
+#     (see `Register.swift`'s header), so the byte-match is the only thing that proves the five
+#     serialized tokens really are Java's.
+#
+# ── WHAT THIS SCRIPT DELIBERATELY DOES NOT DO, AND WHY ─────────────────────────────────────
+#
+# It was specified as: place a Register, CLICK ITS LABEL, retype it, commit with Return. That is
+# the gesture that would actually gate the *placement*, since a click only reaches the label if
+# `labelPlacement` puts the text box where 4.1.0 puts it. It cannot be written today. Three
+# independent blockers, all in files this slice does not own, each verified by running the
+# oracle rather than by reading it:
+#
+#  1. NO `type` OR `key return` OPERATION. Both drivers accept exactly `delete` and `backspace`
+#     (`EditBridge.java:330-343`, `EditParityTests.swift:205-215`). "Retype it and commit with
+#     Return" is not expressible in the script language.
+#
+#  2. `Canvas.getGraphics()` IS NULL IN THE ORACLE. `EditBridge` builds a real `Graphics` from a
+#     `BufferedImage` and hands it to every tool call — but `TextTool.mousePressed` builds a
+#     `ComponentUserEvent(canvas, x, y)` and `InstanceTextField.getTextCaret` then takes its
+#     graphics from `event.getCanvas().getGraphics()` (InstanceTextField.java:101-102), not from
+#     the one the harness passed. The harness's `Canvas` is an undisplayed `JPanel`, so that is
+#     null, and `field.getBounds(null)` dies in `Graphics.getFontMetrics`. Measured:
+#
+#         tool add:Register / toolattr label A / click 200 200
+#             -> OK
+#         ... plus  tool text / click 230 192
+#             -> FAIL  NullPointerException: Cannot invoke
+#                      "java.awt.Graphics.getFontMetrics(java.awt.Font)" because "g" is null
+#
+#  3. `HeadlessFrame` HAS NO `attrTable`. It is fabricated with `Unsafe.allocateInstance`
+#     (EditBridge.java:186-200), so every field is null, and `TextTool.mousePressed` calls
+#     `proj.getFrame().viewComponentAttributes(circ, comp)` unconditionally on all three of its
+#     arms (TextTool.java:271, :285, and the create-new-annotation arm). Measured, with the text
+#     tool clicking empty canvas so blocker 2 cannot be what fires:
+#
+#         tool add:Register / click 200 200 / tool text / click 900 900
+#             -> FAIL  NullPointerException: Cannot invoke
+#                      "AttrTable.setAttrTableModel(AttrTableModel)" because "this.attrTable" is null
+#
+#     Note this contradicts `EditBridge.java`'s own audit, which lists the four places `getFrame()`
+#     is dereferenced and concludes `viewComponentAttributes` is never reached. That audit was
+#     written for the tools the first ten scripts drive; the Text Tool reaches it, so the audit is
+#     incomplete rather than wrong. Whoever adds the Text Tool to this gate has to fix all three.
+#
+# The placement itself is therefore gated in-process instead, by
+# `swift/Tests/LogisimStdTests/MemoryLabelPlacementTests.swift`, which asserts the absolute
+# coordinates against the 4.1.0 source and checks that the drawn `TextRun` and the editable
+# field both come from them. That is a weaker instrument than a byte-match against the jar and
+# is named as such.
+tool	add:Register
+toolattr	label	A
+click	200	200
+setattr	200	200	label	Q7
+setattr	200	200	labelloc	south

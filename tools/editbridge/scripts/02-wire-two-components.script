@@ -1,0 +1,8 @@
+# Two components and a wire between them. Exercises AddTool twice, WiringTool once,
+# and the writer ordering of <comp> against <wire>.
+tool	add:Pin
+click	200	190
+tool	add:AND Gate
+click	300	200
+tool	wiring
+drag	200	190	250	190

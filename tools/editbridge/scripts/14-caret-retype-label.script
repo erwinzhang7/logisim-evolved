@@ -1,0 +1,83 @@
+# Board #81: the gesture scripts 11-13 were commissioned as and could not express.
+#
+# CLICK A COMPONENT'S LABEL, RETYPE IT, COMMIT WITH RETURN — through the real Text Tool, on both
+# sides, byte-matched against 4.1.0. Scripts 11, 12 and 13 each say in their own header that this
+# was the script they wanted and that three blockers made it unwritable. All three are fixed:
+# `EditBridge.java` obstacles 4 (`Canvas.getGraphics()` was null) and 5 (the fabricated `Frame`
+# had a null `attrTable`), and the new `type` / `key return` operations. Those three rows keep
+# their place — they gate `setattr` on `label`, `labelloc` and `facing`, which this does not touch
+# — but they gate the *attribute*, and this gates the *placement*.
+#
+# ── WHY A CLICK GATES THE PLACEMENT AND A `setattr` DOES NOT ────────────────────────────────
+#
+# `13-label-tunnel` says of itself: "It does **not** exercise `Tunnel.labelPlacement`, and it would
+# stay green if that placement were wrong." A click fixes exactly that.
+# `InstanceTextField.getTextCaret` hit-tests the click against the label's own box
+# (`InstanceTextField.java:113-118`), so the caret opens only if the box is where 4.1.0 puts it —
+# and `TextTool.mousePressed`'s third arm (`TextTool.java:296-307`) turns a miss into a brand-new
+# free-standing `Text` annotation rather than a silent no-op. A wrong placement therefore does not
+# weaken this row, it changes the saved file structurally.
+#
+# MEASURED, not asserted. Each arm re-run with only the click moved, still inside the component
+# body, everything else identical:
+#
+#   Tunnel, click (307,300) -> (320,300):
+#       <comp name="Tunnel"><a name="label" val="T"/>            (unchanged — the retype vanished)
+#       <comp lib="9" loc="(320,300)" name="Text"><a name="text" val="CLK"/>    (+ a whole comp)
+#   Register, click (230,245) -> (230,275):
+#       the same shape — label stays "A", a `Text` appears at the click.
+#
+# ── THE TWO COMPONENTS, AND WHY THESE TWO ───────────────────────────────────────────────────
+#
+#   * **Tunnel** — `TunnelAttributes.configureLabel()` (`TunnelAttributes.java:47-78`), which is
+#     NOT the shared `Instance.computeLabelTextField` path: its `labelX`/`labelY` are offsets from
+#     the anchor by `Tunnel.ARROW_MARGIN`, H_LEFT and V_CENTER_OVERALL. Measured box for `T` at
+#     (300,300): starts at x=305, vertically centred on y=300. This is the placement
+#     `13-label-tunnel` named as ungated, and it is now gated byte-exactly.
+#   * **Register with `labelloc center`** — `Instance.computeLabelTextField`'s `LABEL_CENTER` arm
+#     (`Instance.java:138-142`), i.e. the shared path all ~87 of the memory/io/TTL/Tunnel
+#     placements added by board #78 run through, reached from a memory factory.
+#
+# **`labelloc center` is not decoration and not a convenience — read `14-caret-retype-detached-
+# label.script` before changing it.** The DEFAULT `labelloc` for a Register is `north`, which puts
+# the label box entirely OUTSIDE the component body, and that case is a measured port defect. It
+# has its own script, and that script is red on purpose. This one uses `center` so that the rest
+# of the pipeline — hit test, clear, type, commit — is gated green and independently, instead of
+# being hidden behind the one defect.
+#
+# The clicks sit on the ALIGNMENT ANCHOR rather than at the box centre, deliberately: y=300 is the
+# Tunnel field's vertical centre and (230,245) is the Register field's H_CENTER/V_CENTER anchor, so
+# the hit stays inside the box under any text-measurement engine whose glyph advances are within a
+# few units of AWT's. This gate is meant to catch a wrong *placement*, not to assert that CoreText
+# and AWT measure "Q7" to the same pixel.
+#
+# ── WHY THE FIELD IS CLEARED WITH BACKSPACE AND DELETE ──────────────────────────────────────
+#
+# Where the caret lands on a click is `GraphicsUtil.getTextPosition(g, ...)` — a character index
+# derived from font metrics, which AWT and CoreText need not agree on. `key backspace` x2 then
+# `key delete` x2 empties the field and leaves the caret at 0 from ANY starting index (both are
+# no-ops on an empty field), so everything after the click is metric-independent. Two of each for
+# a one-character label is deliberate slack: the count only has to be at least the label's length.
+# See `EditBridge.java`'s script-language section for the full argument.
+tool	add:Tunnel
+toolattr	label	T
+click	300	300
+tool	add:Register
+toolattr	label	A
+toolattr	labelloc	center
+click	200	200
+tool	text
+click	307	300
+key	backspace
+key	backspace
+key	delete
+key	delete
+type	CLK
+key	return
+click	230	245
+key	backspace
+key	backspace
+key	delete
+key	delete
+type	Q7
+key	return

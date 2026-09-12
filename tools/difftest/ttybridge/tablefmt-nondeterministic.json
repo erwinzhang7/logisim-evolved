@@ -1,0 +1,6 @@
+{
+ "source": "tablefmtgate.py --selfcheck, 2 runs of the 4.1.0 jar per triple, --scope root",
+ "reading": "856 triples: 840 stable, 16 unusable (timeout at 120s), 0 DIFFERS",
+ "why_it_is_empty": "This is a MEASUREMENT, not an omission. statsgate excludes 52 cases because FileStatistics prints generateValidVHDLLabel names, which are random per run; the -tty table path has no such source, so the oracle reproduces itself on every case and a mismatch here is a port defect and nothing else. The file exists so that `compare` reports `0 excluded` rather than printing a NOTE about a missing list -- an unread exclusion file is how rig.py's headline number moved by 22 with no code change.",
+ "cases": {}
+}

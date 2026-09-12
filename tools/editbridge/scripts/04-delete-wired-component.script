@@ -1,0 +1,12 @@
+# Delete a component that has a wire ATTACHED to one of its ports. The AND gate placed at
+# (300,200) has its output end at exactly that anchor, so the wire dragged back to it is a
+# real connection, not a wire that happens to be nearby. The gate is then selected with the
+# Edit Tool (a press at (280,200) is inside the body and is not a wiring point, so EditTool
+# routes it to its select half) and deleted. The wire must survive; the gate must not.
+tool	add:AND Gate
+click	300	200
+tool	wiring
+drag	400	200	300	200
+tool	edit
+click	280	200
+key	delete

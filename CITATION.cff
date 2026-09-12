@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+title: logisim-evolved
+message: >-
+  If you use this software, please cite both this port and the
+  logisim-evolution project it is derived from.
+type: software
+authors:
+  - given-names: Erzheng
+    family-names: Zhang
+    alias: Erwin Zhang
+abstract: >-
+  A native macOS port, in Swift, of logisim-evolution 4.1.0:
+  educational software for designing and simulating digital
+  logic circuits.
+license: GPL-3.0-only
+repository-code: 'https://github.com/erwinzhang7/logisim-evolved'
+keywords:
+  - digital logic
+  - circuit simulation
+  - computer organisation
+  - education
+  - macOS
+references:
+  - type: software
+    title: Logisim-evolution
+    repository-code: 'https://github.com/logisim-evolution/logisim-evolution'
+    license: GPL-3.0-only
+    notes: >-
+      The program this is a modified version of. Originally
+      written as Logisim by Carl Burch, Hendrix College.
+    authors:
+      - given-names: Carl
+        family-names: Burch
+        affiliation: Hendrix College
+      - name: The logisim-evolution contributors

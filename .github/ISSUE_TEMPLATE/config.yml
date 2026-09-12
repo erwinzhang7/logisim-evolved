@@ -1,0 +1,7 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Bug in the original logisim-evolution (Java)
+    url: https://github.com/logisim-evolution/logisim-evolution/issues
+    about: >-
+      If the problem also happens in the Java logisim-evolution, report it there, not here.
+      This repository is an independent macOS port and its maintainers are not theirs.

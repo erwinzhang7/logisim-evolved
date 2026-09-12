@@ -1,0 +1,10 @@
+# WIRE REPAIR. A splitter placed at (300,200) has ends (300,200), (320,180), (320,190).
+# The wire is dragged from (380,180) to (310,180) -- one grid step PAST the (320,180) end
+# and into the body. Splitter.shouldRepairWire returns true unconditionally, so
+# WiringTool.checkForRepairs must shorten the loose end back onto the port: the saved wire
+# is (320,180)-(380,180). A port that skipped the repair would write (310,180) instead --
+# a one-grid-step difference that only a byte comparison notices.
+tool	add:Splitter
+click	300	200
+tool	wiring
+drag	380	180	310	180

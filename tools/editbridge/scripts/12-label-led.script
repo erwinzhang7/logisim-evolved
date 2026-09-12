@@ -1,0 +1,46 @@
+# Board #78: an LED's label, edited and saved.
+#
+# The LED is the family witness. Before #78 it carried a LABEL attribute and no text field at
+# all, so its label neither drew nor edited; it now conforms to InstanceLabelProvider with
+# `computeLabelTextField(AVOID_LEFT)` -- for the default west-facing LED placed at (300, 200),
+# bounds (300,190) 20x20, that puts an EAST label at (322, 200) H_LEFT/V_CENTER and a NORTH one
+# at (310, 188) H_CENTER/V_BOTTOM.
+#
+# ── WHAT THIS SCRIPT IS NOT, AND WHY ────────────────────────────────────────────────────────
+#
+# It was asked to click the LED's label, retype it and commit with Return. It cannot, and the
+# obstacle is in the gate rather than in either editor. Two independent blockers, both measured:
+#
+#  1. **There is no `type` op.** The script language has exactly seven operations and `key`
+#     accepts only `delete` and `backspace` (EditBridge.java:333-336,
+#     EditParityTests.swift:210-211). Nothing in either driver can deliver a character to an open
+#     caret, so no script can retype anything.
+#
+#  2. **`tool text` + `click` throws in the harness.** Adding those two lines here produced, from
+#     `--regenerate`:
+#         FAIL 12-label-led.script: NullPointerException: Cannot invoke
+#         "java.awt.Graphics.getFontMetrics(java.awt.Font)" because "g" is null
+#     `InstanceTextField.getTextCaret` (InstanceTextField.java:100-119) measures through
+#     `event.getCanvas().getGraphics()`, NOT through the `Graphics` the tool was handed, and an
+#     unrealized `Canvas` JPanel returns null from it. EditBridge's own BufferedImage `Graphics`
+#     (EditBridge.java:231) never reaches that call. So the text tool is listed in the script
+#     language and is unusable for every component that has a text field.
+#
+# And even with both fixed, a byte-comparison of the saved .circ could not witness *where* the
+# caret opened: the file records the label's text, font and `labelloc`, never its computed pixel
+# position, and `TextTool.editingStopped` (TextTool.java:78-120) makes a hit and a miss write the
+# same bytes -- a hit commits old-text == new-text, a miss creates a blank Text that `isEmpty`
+# sends down the `a = null` arm. Only a `type` op makes the two outcomes differ.
+#
+# ── WHAT IT DOES GATE ───────────────────────────────────────────────────────────────────────
+#
+# The half that is reachable, and that is genuinely new: both `label` and `labelloc` edited on
+# an LED through the real attribute-table model (EditBridgeAttrTable -> SetAttributeAction, the
+# same path the GUI's table uses), then saved. `labelloc` is the attribute `labelPlacement`
+# reads, so this pins the input to the new placement even though the output is not in the file.
+# The second `setattr` also stops the two actions from merging, as 06-set-attribute does.
+
+tool	add:LED
+click	300	200
+setattr	300	200	label	Q
+setattr	300	200	labelloc	north

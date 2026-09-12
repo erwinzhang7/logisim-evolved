@@ -1,0 +1,48 @@
+name: Bug report
+description: Something this port does differently from what you expected.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        This is **logisim-evolved**, a Swift/macOS port of logisim-evolution. Please do not report
+        port bugs to the upstream project.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: From the About window, or the commit you built.
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version and Mac model
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what you expected instead
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: A `.circ` file attached here is worth a great deal.
+    validations:
+      required: true
+  - type: dropdown
+    id: upstream
+    attributes:
+      label: Does the same thing happen in the Java logisim-evolution 4.1.0?
+      description: >-
+        This matters more than anything else in the report. If it happens there too it is an
+        upstream behaviour and may be faithful; if it happens only here it is a porting defect.
+      options:
+        - Only in this port
+        - In both
+        - Have not checked
+    validations:
+      required: true

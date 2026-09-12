@@ -1,0 +1,188 @@
+LIB	-	Builtin	Built-In
+LIB	Builtin	Base	Base
+TOOL	Base	Poke Tool	Poke Tool	-	-
+TOOL	Base	Edit Tool	Edit Tool	-	-
+TOOL	Base	Wiring Tool	Wiring Tool	-	-
+TOOL	Base	Text Tool	Text Tool	-	-
+TOOL	Base	Menu Tool	Menu Tool	-	-
+LIB	Builtin	Gates	Gates
+TOOL	Gates	NOT Gate	NOT Gate	NOT Gate	com.cburch.logisim.std.gates.NotGate
+TOOL	Gates	Buffer	Buffer	Buffer	com.cburch.logisim.std.gates.Buffer
+TOOL	Gates	AND Gate	AND Gate	AND Gate	com.cburch.logisim.std.gates.AndGate
+TOOL	Gates	OR Gate	OR Gate	OR Gate	com.cburch.logisim.std.gates.OrGate
+TOOL	Gates	NAND Gate	NAND Gate	NAND Gate	com.cburch.logisim.std.gates.NandGate
+TOOL	Gates	NOR Gate	NOR Gate	NOR Gate	com.cburch.logisim.std.gates.NorGate
+TOOL	Gates	XOR Gate	XOR Gate	XOR Gate	com.cburch.logisim.std.gates.XorGate
+TOOL	Gates	XNOR Gate	XNOR Gate	XNOR Gate	com.cburch.logisim.std.gates.XnorGate
+TOOL	Gates	Odd Parity	Odd Parity	Odd Parity	com.cburch.logisim.std.gates.OddParityGate
+TOOL	Gates	Even Parity	Even Parity	Even Parity	com.cburch.logisim.std.gates.EvenParityGate
+TOOL	Gates	Controlled Buffer	Controlled Buffer	Controlled Buffer	com.cburch.logisim.std.gates.ControlledBuffer
+TOOL	Gates	Controlled Inverter	Controlled Inverter	Controlled Inverter	com.cburch.logisim.std.gates.ControlledBuffer
+TOOL	Gates	PLA	PLA	PLA	com.cburch.logisim.std.gates.Pla
+LIB	Builtin	Wiring	Wiring
+TOOL	Wiring	Splitter	Splitter	Splitter	com.cburch.logisim.circuit.SplitterFactory
+TOOL	Wiring	Pin	Pin	Pin	com.cburch.logisim.std.wiring.Pin
+TOOL	Wiring	Probe	Probe	Probe	com.cburch.logisim.std.wiring.Probe
+TOOL	Wiring	Tunnel	Tunnel	Tunnel	com.cburch.logisim.std.wiring.Tunnel
+TOOL	Wiring	Pull Resistor	Pull Resistor	Pull Resistor	com.cburch.logisim.std.wiring.PullResistor
+TOOL	Wiring	Clock	Clock	Clock	com.cburch.logisim.std.wiring.Clock
+TOOL	Wiring	POR	POR	POR	com.cburch.logisim.std.wiring.PowerOnReset
+TOOL	Wiring	Constant	Constant	Constant	com.cburch.logisim.std.wiring.Constant
+TOOL	Wiring	Power	Power	Power	com.cburch.logisim.std.wiring.Power
+TOOL	Wiring	Ground	Ground	Ground	com.cburch.logisim.std.wiring.Ground
+TOOL	Wiring	NoConnect	Do not connect	Do not connect	com.cburch.logisim.std.wiring.DoNotConnect
+TOOL	Wiring	Transistor	Transistor	Transistor	com.cburch.logisim.std.wiring.Transistor
+TOOL	Wiring	Transmission Gate	Transmission Gate	Transmission Gate	com.cburch.logisim.std.wiring.TransmissionGate
+TOOL	Wiring	Bit Extender	Bit Extender	Bit Extender	com.cburch.logisim.std.wiring.BitExtender
+LIB	Builtin	Plexers	Plexers
+TOOL	Plexers	Multiplexer	Multiplexer	Multiplexer	com.cburch.logisim.std.plexers.Multiplexer
+TOOL	Plexers	Demultiplexer	Demultiplexer	Demultiplexer	com.cburch.logisim.std.plexers.Demultiplexer
+TOOL	Plexers	Decoder	Decoder	Decoder	com.cburch.logisim.std.plexers.Decoder
+TOOL	Plexers	Priority Encoder	Priority Encoder	Priority Encoder	com.cburch.logisim.std.plexers.PriorityEncoder
+TOOL	Plexers	BitSelector	Bit Selector	Bit Selector	com.cburch.logisim.std.plexers.BitSelector
+LIB	Builtin	Arithmetic	Arithmetic
+TOOL	Arithmetic	Adder	Adder	Adder	com.cburch.logisim.std.arith.Adder
+TOOL	Arithmetic	Subtractor	Subtractor	Subtractor	com.cburch.logisim.std.arith.Subtractor
+TOOL	Arithmetic	Multiplier	Multiplier	Multiplier	com.cburch.logisim.std.arith.Multiplier
+TOOL	Arithmetic	Divider	Divider	Divider	com.cburch.logisim.std.arith.Divider
+TOOL	Arithmetic	Negator	Negator	Negator	com.cburch.logisim.std.arith.Negator
+TOOL	Arithmetic	Exponentiator	Exponentiator	Exponentiator	com.cburch.logisim.std.arith.Exponentiator
+TOOL	Arithmetic	SquareRoot	Square Root	Square Root	com.cburch.logisim.std.arith.SquareRoot
+TOOL	Arithmetic	Absolute	Absolute	Absolute	com.cburch.logisim.std.arith.Absolute
+TOOL	Arithmetic	Comparator	Comparator	Comparator	com.cburch.logisim.std.arith.Comparator
+TOOL	Arithmetic	MinMax	Minimum and Maximum	Minimum and Maximum	com.cburch.logisim.std.arith.MinMax
+TOOL	Arithmetic	Shifter	Shifter	Shifter	com.cburch.logisim.std.arith.Shifter
+TOOL	Arithmetic	BitAdder	Bit Adder	Bit Adder	com.cburch.logisim.std.arith.BitAdder
+TOOL	Arithmetic	BitFinder	Bit Finder	Bit Finder	com.cburch.logisim.std.arith.BitFinder
+LIB	Builtin	FPArithmetic	Floating Point Arithmetic
+TOOL	FPArithmetic	FPAdder	Floating Point Adder	Floating Point Adder	com.cburch.logisim.std.arith.floating.FpAdder
+TOOL	FPArithmetic	FPSubtractor	Floating Point Subtractor	Floating Point Subtractor	com.cburch.logisim.std.arith.floating.FpSubtractor
+TOOL	FPArithmetic	FPMultiplier	Floating Point Multiplier	Floating Point Multiplier	com.cburch.logisim.std.arith.floating.FpMultiplier
+TOOL	FPArithmetic	FPDivider	Floating Point Divider	Floating Point Divider	com.cburch.logisim.std.arith.floating.FpDivider
+TOOL	FPArithmetic	FPNegator	Floating Point Negator	Floating Point Negator	com.cburch.logisim.std.arith.floating.FpNegator
+TOOL	FPArithmetic	FPExponentiator	Floating Point Exponentiator	Floating Point Exponentiator	com.cburch.logisim.std.arith.floating.FpExponentiator
+TOOL	FPArithmetic	FPLogarithm	Floating Point Logarithm	Floating Point Logarithm	com.cburch.logisim.std.arith.floating.FpLogarithm
+TOOL	FPArithmetic	FPSquareRoot	Floating Point Square Root	Floating Point Square Root	com.cburch.logisim.std.arith.floating.FpSquareRoot
+TOOL	FPArithmetic	FPAbsolute	Floating Point Absolute	Floating Point Absolute	com.cburch.logisim.std.arith.floating.FpAbsolute
+TOOL	FPArithmetic	FPComparator	Floating Point Comparator	Floating Point Comparator	com.cburch.logisim.std.arith.floating.FpComparator
+TOOL	FPArithmetic	FPMinMax	Floating Point Minimum and Maximum	Floating Point Minimum and Maximum	com.cburch.logisim.std.arith.floating.FpMinMax
+TOOL	FPArithmetic	FPRound	Floating Point Round	Floating Point Round	com.cburch.logisim.std.arith.floating.FpRound
+TOOL	FPArithmetic	FPTrigonometry	Floating Point Trigonometry	Floating Point Trigonometry	com.cburch.logisim.std.arith.floating.FpTrigonometry
+TOOL	FPArithmetic	FPClassificator	Floating Point Classificator	Floating Point Classificator	com.cburch.logisim.std.arith.floating.FpClassificator
+TOOL	FPArithmetic	FPToFP	Floating Point Converter	Floating Point Converter	com.cburch.logisim.std.arith.floating.FpToFp
+TOOL	FPArithmetic	FPToInt	Floating Point to Integer	Floating Point to Integer	com.cburch.logisim.std.arith.floating.FpToInt
+TOOL	FPArithmetic	IntToFP	Integer to Floating Point	Integer to Floating Point	com.cburch.logisim.std.arith.floating.IntToFp
+LIB	Builtin	Memory	Memory
+TOOL	Memory	D Flip-Flop	D Flip-Flop	D Flip-Flop	com.cburch.logisim.std.memory.DFlipFlop
+TOOL	Memory	T Flip-Flop	T Flip-Flop	T Flip-Flop	com.cburch.logisim.std.memory.TFlipFlop
+TOOL	Memory	J-K Flip-Flop	J-K Flip-Flop	J-K Flip-Flop	com.cburch.logisim.std.memory.JKFlipFlop
+TOOL	Memory	S-R Flip-Flop	S-R Flip-Flop	S-R Flip-Flop	com.cburch.logisim.std.memory.SRFlipFlop
+TOOL	Memory	Register	Register	Register	com.cburch.logisim.std.memory.Register
+TOOL	Memory	Counter	Counter	Counter	com.cburch.logisim.std.memory.Counter
+TOOL	Memory	Shift Register	Shift Register	Shift Register	com.cburch.logisim.std.memory.ShiftRegister
+TOOL	Memory	Random	Random Generator	Random Generator	com.cburch.logisim.std.memory.Random
+TOOL	Memory	RAM	RAM	RAM	com.cburch.logisim.std.memory.Ram
+TOOL	Memory	ROM	ROM	ROM	com.cburch.logisim.std.memory.Rom
+TOOL	Memory	DualRAM	Dual Port RAM	Dual Port RAM	com.cburch.logisim.std.memory.DualRam
+LIB	Builtin	I/O	Input/Output
+TOOL	I/O	Button	Button	Button	com.cburch.logisim.std.io.Button
+TOOL	I/O	DipSwitch	Dip switch	DIP Switch	com.cburch.logisim.std.io.DipSwitch
+TOOL	I/O	Joystick	Joystick	Joystick	com.cburch.logisim.std.io.Joystick
+TOOL	I/O	Keyboard	Keyboard	Keyboard	com.cburch.logisim.std.io.Keyboard
+TOOL	I/O	LED	LED	LED	com.cburch.logisim.std.io.Led
+TOOL	I/O	LedBar	LED Bar	LED Bar	com.cburch.logisim.std.io.LedBar
+TOOL	I/O	RGBLED	RGB LED	RGB LED	com.cburch.logisim.std.io.RgbLed
+TOOL	I/O	7-Segment Display	7-Segment Display	7-Segment Display	com.cburch.logisim.std.io.SevenSegment
+TOOL	I/O	Hex Digit Display	Hex Digit Display	Hex Digit Display	com.cburch.logisim.std.io.HexDigit
+TOOL	I/O	DotMatrix	LED Matrix	LED Matrix	com.cburch.logisim.std.io.DotMatrix
+TOOL	I/O	TTY	TTY	TTY	com.cburch.logisim.std.io.Tty
+TOOL	I/O	PortIO	Port I/O	Port I/O	com.cburch.logisim.std.io.PortIo
+TOOL	I/O	ReptarLB	Reptar Local Bus	Reptar Local Bus	com.cburch.logisim.std.io.ReptarLocalBus
+TOOL	I/O	Telnet	Telnet	Telnet	com.cburch.logisim.std.io.Telnet
+TOOL	I/O	RGB Video	RGB Video	RGB Video	com.cburch.logisim.std.io.Video$Factory
+LIB	Builtin	TTL	TTL
+TOOL	TTL	7400	7400: quad 2-input NAND gate	7400	com.cburch.logisim.std.ttl.Ttl7400
+TOOL	TTL	7402	7402: quad 2-input NOR gate (right-to-left)	7402	com.cburch.logisim.std.ttl.Ttl7402
+TOOL	TTL	7404	7404: hex inverter	7404	com.cburch.logisim.std.ttl.Ttl7404
+TOOL	TTL	7408	7408: quad 2-input AND gate	7408	com.cburch.logisim.std.ttl.Ttl7408
+TOOL	TTL	7410	7410: triple 3-input NAND gate	7410	com.cburch.logisim.std.ttl.Ttl7410
+TOOL	TTL	7411	7411: triple 3-input AND gate	7411	com.cburch.logisim.std.ttl.Ttl7411
+TOOL	TTL	7413	7413: dual 4-input NAND gate(Schmitt trigger)	7413	com.cburch.logisim.std.ttl.Ttl7413
+TOOL	TTL	7414	7414: hex inverter (Schmitt trigger)	7414	com.cburch.logisim.std.ttl.Ttl7414
+TOOL	TTL	7418	7418: dual 4-input NAND gate(Schmitt trigger)	7418	com.cburch.logisim.std.ttl.Ttl7418
+TOOL	TTL	7419	7419: hex inverter (Schmitt trigger)	7419	com.cburch.logisim.std.ttl.Ttl7419
+TOOL	TTL	7420	7420: dual 4-input NAND gate	7420	com.cburch.logisim.std.ttl.Ttl7420
+TOOL	TTL	7421	7421: dual 4-input AND gate	7421	com.cburch.logisim.std.ttl.Ttl7421
+TOOL	TTL	7424	7424: quad 2-input NAND gate (Schmitt trigger)	7424	com.cburch.logisim.std.ttl.Ttl7424
+TOOL	TTL	7427	7427: triple 3-input NOR gate	7427	com.cburch.logisim.std.ttl.Ttl7427
+TOOL	TTL	7430	7430: single 8-input NAND gate	7430	com.cburch.logisim.std.ttl.Ttl7430
+TOOL	TTL	7432	7432: quad 2-input OR gate	7432	com.cburch.logisim.std.ttl.Ttl7432
+TOOL	TTL	7434	7434: hex buffer gate	7434	com.cburch.logisim.std.ttl.Ttl7434
+TOOL	TTL	7436	7436: quad 2-input NOR gate	7436	com.cburch.logisim.std.ttl.Ttl7436
+TOOL	TTL	7442	7442: BCD to decimal decoder	7442	com.cburch.logisim.std.ttl.Ttl7442
+TOOL	TTL	7443	7443: Excess-3 to decimal decoder	7443	com.cburch.logisim.std.ttl.Ttl7443
+TOOL	TTL	7444	7444: Gray to decimal decoder	7444	com.cburch.logisim.std.ttl.Ttl7444
+TOOL	TTL	7447	7447: BCD to 7-segment decoder	7447	com.cburch.logisim.std.ttl.Ttl7447
+TOOL	TTL	7451	7451: dual AND-OR-INVERT gate	7451	com.cburch.logisim.std.ttl.Ttl7451
+TOOL	TTL	7454	7454: Four wide AND-OR-INVERT gate	7454	com.cburch.logisim.std.ttl.Ttl7454
+TOOL	TTL	7458	7458: dual AND-OR gate	7458	com.cburch.logisim.std.ttl.Ttl7458
+TOOL	TTL	7464	7464: 4-2-3-2 AND-OR-INVERT gate	7464	com.cburch.logisim.std.ttl.Ttl7464
+TOOL	TTL	7474	7474: dual D-Flipflops with preset and clear	7474	com.cburch.logisim.std.ttl.Ttl7474
+TOOL	TTL	7485	7485: 4-bit magnitude comparator	7485	com.cburch.logisim.std.ttl.Ttl7485
+TOOL	TTL	7486	7486: quad 2-input XOR gate	7486	com.cburch.logisim.std.ttl.Ttl7486
+TOOL	TTL	7487	7487: 4-bit True/complement, zero/one elements	7487	com.cburch.logisim.std.ttl.Ttl7487
+TOOL	TTL	74125	74125: quad bus buffer, three-state outputs, negative enable	74125	com.cburch.logisim.std.ttl.Ttl74125
+TOOL	TTL	74138	74138: 3-line to 8-line decoder	74138	com.cburch.logisim.std.ttl.Ttl74138
+TOOL	TTL	74139	74139: Dual 2-line to 4-line decoder	74139	com.cburch.logisim.std.ttl.Ttl74139
+TOOL	TTL	74151	74151: 8-line to 1 line data selector	74151	com.cburch.logisim.std.ttl.Ttl74151
+TOOL	TTL	74153	74153: dual 4-line to 1 line data selector	74153	com.cburch.logisim.std.ttl.Ttl74153
+TOOL	TTL	74157	74157: quad 2-line to 1 line data selector	74157	com.cburch.logisim.std.ttl.Ttl74157
+TOOL	TTL	74158	74158: quad 2-line to 1 line data selector, inverted output	74158	com.cburch.logisim.std.ttl.Ttl74158
+TOOL	TTL	74161	74161: 4-bit sync counter with async clear	74161	com.cburch.logisim.std.ttl.Ttl74161
+TOOL	TTL	74163	74163: 4-bit sync counter with sync clear	74163	com.cburch.logisim.std.ttl.Ttl74163
+TOOL	TTL	74164	74164: 8-bit serial-to-parallel shift register	74164	com.cburch.logisim.std.ttl.Ttl74164
+TOOL	TTL	74165	74165: 8-bit parallel-to-serial shift register	74165	com.cburch.logisim.std.ttl.Ttl74165
+TOOL	TTL	74166	74166: 8-bit parallel-to-serial shift register with asynchronous clear	74166	com.cburch.logisim.std.ttl.Ttl74166
+TOOL	TTL	74175	74175: quad D-flipflop, asynchronous reset	74175	com.cburch.logisim.std.ttl.Ttl74175
+TOOL	TTL	74181	74181: arithmetic logic unit	74181	com.cburch.logisim.std.ttl.Ttl74181
+TOOL	TTL	74182	74182: look-ahead carry generator	74182	com.cburch.logisim.std.ttl.Ttl74182
+TOOL	TTL	74192	74192: 4-bit up/down decade counter	74192	com.cburch.logisim.std.ttl.Ttl74192
+TOOL	TTL	74193	74193: 4-bit up/down binary counter	74193	com.cburch.logisim.std.ttl.Ttl74193
+TOOL	TTL	74194	74194: 4-bit bidirectional universal shift register	74194	com.cburch.logisim.std.ttl.Ttl74194
+TOOL	TTL	74240	74240: octal buffers with three-state inverted outputs	74240	com.cburch.logisim.std.ttl.Ttl74240
+TOOL	TTL	74241	74241: octal buffers with three-state outputs and complementary enables	74241	com.cburch.logisim.std.ttl.Ttl74241
+TOOL	TTL	74244	74244: octal buffers with three-state outputs	74244	com.cburch.logisim.std.ttl.Ttl74244
+TOOL	TTL	74245	74245: octal bus transceivers with three-state outputs	74245	com.cburch.logisim.std.ttl.Ttl74245
+TOOL	TTL	74266	74266: quad 2-input XNOR gate (open-collector)	74266	com.cburch.logisim.std.ttl.Ttl74266
+TOOL	TTL	74273	74273: octal D-Flipflop with clear	74273	com.cburch.logisim.std.ttl.Ttl74273
+TOOL	TTL	74283	74283: 4-bit binary full adder	74283	com.cburch.logisim.std.ttl.Ttl74283
+TOOL	TTL	74299	74299: 8-bit universal shift register with three-state outputs	74299	com.cburch.logisim.std.ttl.Ttl74299
+TOOL	TTL	74377	74377: octal D-Flipflop with enable	74377	com.cburch.logisim.std.ttl.Ttl74377
+TOOL	TTL	74381	74381: arithmetic logic unit (ALU)	74381	com.cburch.logisim.std.ttl.Ttl74381
+TOOL	TTL	74541	74541: Octal buffers with three-state outputs	74541	com.cburch.logisim.std.ttl.Ttl74541
+TOOL	TTL	74670	74670: 4-by-4 register file with three-state outputs	74670	com.cburch.logisim.std.ttl.Ttl74670
+TOOL	TTL	747266	747266: quad 2-input XNOR gate	747266	com.cburch.logisim.std.ttl.Ttl747266
+LIB	Builtin	HDL-IP	HDL-IP
+TOOL	HDL-IP	VHDL Entity	VHDL Entity	VHDL Entity	com.cburch.logisim.std.hdl.VhdlEntityComponent
+TOOL	HDL-IP	BLIFCircuit	BLIF Component	BLIF Component	com.cburch.logisim.std.hdl.BlifCircuitComponent
+LIB	Builtin	TCL	TCL
+TOOL	TCL	TclConsoleReds	TCL REDS console	TCL REDS console	com.cburch.logisim.std.tcl.TclConsoleReds
+TOOL	TCL	TclGeneric	TCL generic	TCL generic	com.cburch.logisim.std.tcl.TclGeneric
+LIB	Builtin	BFH-Praktika	BFH mega functions
+TOOL	BFH-Praktika	Binary_to_BCD_converter	Binary to BCD	Binary to BCD	com.cburch.logisim.std.bfh.BinToBcd
+TOOL	BFH-Praktika	BCD_to_7_Segment_decoder	BCD to seven segment	BCD to seven segment	com.cburch.logisim.std.bfh.BcdToSevenSegmentDisplay
+LIB	Builtin	Input/Output-Extra	Input/Output Extra
+TOOL	Input/Output-Extra	Switch	Switch	Switch	com.cburch.logisim.std.io.extra.Switch
+TOOL	Input/Output-Extra	Buzzer	Buzzer	Buzzer	com.cburch.logisim.std.io.extra.Buzzer
+TOOL	Input/Output-Extra	Slider	Slider	Slider	com.cburch.logisim.std.io.extra.Slider
+TOOL	Input/Output-Extra	Digital Oscilloscope	Digital oscilloscope	Digital oscilloscope	com.cburch.logisim.std.io.extra.DigitalOscilloscope
+TOOL	Input/Output-Extra	PlaRom	PLA	PLA	com.cburch.logisim.std.io.extra.PlaRom
+LIB	Builtin	Soc	System On a Chip
+TOOL	Soc	Rv32im	Risc V IM simulator	Risc V IM simulator	com.cburch.logisim.soc.rv32im.Rv32imRiscV
+TOOL	Soc	Nios2	Nios2s simulator	Nios2s simulator	com.cburch.logisim.soc.nios2.Nios2
+TOOL	Soc	SocBus	SoC bus simulator	SoC bus simulator	com.cburch.logisim.soc.bus.SocBus
+TOOL	Soc	Socmem	Memory simulator	Memory simulator	com.cburch.logisim.soc.memory.SocMemory
+TOOL	Soc	SocPio	Parallel input/output expander	Parallel input/output expander	com.cburch.logisim.soc.pio.SocPio
+TOOL	Soc	SocVga	VGA screen	VGA screen	com.cburch.logisim.soc.vga.SocVga
+TOOL	Soc	SocDma	DMA engine	DMA engine	com.cburch.logisim.soc.dma.SocDma
+TOOL	Soc	SocJtagUart	JTAG UART	JTAG UART	com.cburch.logisim.soc.jtaguart.JtagUart

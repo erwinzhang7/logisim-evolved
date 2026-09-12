@@ -1,0 +1,72 @@
+# THE DEFECT THIS GATE FOUND THE DAY IT COULD FIRST DRIVE THE TEXT TOOL. RED ON PURPOSE.
+#
+# One component, one gesture: place a Register with its DEFAULT `labelloc` (`north`, so the label
+# box sits entirely ABOVE the body and touches no part of it), click the label, retype it, commit
+# with Return. Byte-identical in shape to `14-caret-retype-label.script`, which is green; the only
+# difference is that there the label is inside the body and here it is not.
+#
+# 4.1.0 retypes the label. This port creates a free-standing `Text` annotation at the click point
+# and leaves the label alone:
+#
+#   - java        <a name="label" val="Q7"/>
+#   + swift       <a name="label" val="A"/>
+#   + swift     <comp lib="9" loc="(230,192)" name="Text">
+#   + swift       <a name="text" val="Q7"/>
+#   + swift     </comp>
+#
+# ── THE DEFECT, WITH THE LINE ───────────────────────────────────────────────────────────────
+#
+# `InstanceComponent` in 4.1.0 has TWO `contains` overloads and they are not the same predicate:
+#
+#     public boolean contains(Location pt)                        // InstanceComponent.java:216-220
+#     public boolean contains(Location pt, Graphics g) {          // InstanceComponent.java:223-226
+#       final var field = textField;
+#       return (field != null && field.getBounds(g).contains(pt)) ? true : contains(pt);
+#     }
+#
+# The two-argument one is true for a point inside the LABEL's box even when it is nowhere near the
+# body, and `Circuit.getAllContaining(Location, Graphics)` is what `TextTool.mousePressed` calls
+# (`TextTool.java:282`; the selection scan just above it, `Selection.getComponentsContaining(loc,
+# g)` at `:267`, takes the same predicate). `InstanceComponent.getBounds(Graphics)` (`:329-334`)
+# unions the field the same way.
+#
+# The port has only the one-argument form — `StdInstanceComponent.contains(_:)`,
+# `swift/Sources/LogisimStd/Instance/StdInstanceComponent.swift:132` — and
+# `Circuit.allContaining(_:)`, `swift/Sources/LogisimFile/Circuit.swift:267`, filters on it. So the
+# Text Tool cannot see a component by its label, and `TextTool.mousePressed` falls through to its
+# create-an-annotation arm. **Clicking a label to edit it is broken in the app for every component
+# whose label sits outside its body, which is the default for most of them.** Not this task's file
+# to fix; reported to the integrator with this script as the reproduction.
+#
+# MEASURED, so the diagnosis is not an argument. With the port's own numbers, at the placement
+# below:
+#
+#     label field spec         x=230 y=198 halign=center valign=bottom   (identical to 4.1.0's)
+#     label box                (225,181) 11x17          contains (230,192)   YES
+#     component bounds         (200,200) 60x90          contains (230,192)   no  (label omitted;
+#                                                       4.1.0's getBounds(g) gives (200,178) 60x112)
+#     circuit.allContaining(230,192)                    []
+#
+# The placement is right and the hit test is right; only the lookup that has to reach them is
+# missing. That is also why `14-caret-retype-label.script` is green with `labelloc center`: move
+# the same label inside the body and the whole pipeline — hit test, backspace/delete clear, `type`,
+# `key return`, commit — byte-matches 4.1.0. This script isolates exactly one defect and nothing
+# else.
+#
+# ── WHEN IT IS FIXED ────────────────────────────────────────────────────────────────────────
+#
+# Delete this script's entry from `EditParityTests.knownDivergences`. Swift Testing will fail the
+# suite with "known issue was not recorded" until someone does, so the marker retires itself and
+# cannot rot into silent forgiveness. Do NOT regenerate the golden: it is 4.1.0's output and it is
+# already correct.
+tool	add:Register
+toolattr	label	A
+click	200	200
+tool	text
+click	230	192
+key	backspace
+key	backspace
+key	delete
+key	delete
+type	Q7
+key	return

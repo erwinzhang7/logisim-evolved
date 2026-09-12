@@ -1,0 +1,95 @@
+# Captured from logisim-evolution-4.1.0-all.jar's own RV32imAssembler by
+# tools/socbridge/gen_asm_golden.py. Do not hand-edit: regenerate.
+# <pc>\t<source>\t<OK|ERR|PARSE>\t<hex word or message>
+0	addi x1,x0,5	OK	00500093
+0	addi x31,x30,-2048	OK	800F0F93
+0	addi x1,x2,2047	OK	7FF10093
+0	addi x1,x2,2048	ERR	The immediate value is out of range
+0	addi x1,x2,-2049	ERR	The immediate value is out of range
+0	slti a0,a1,-7	OK	FF95A513
+0	sltiu t0,t1,1	OK	00133293
+0	xori s0,s1,-1	OK	FFF4C413
+0	ori gp,tp,255	OK	0FF26193
+0	andi sp,ra,15	OK	00F0F113
+0	slli x5,x6,31	OK	01F31293
+0	slli x5,x6,32	ERR	The immediate value is out of range
+0	srli x5,x6,1	OK	00135293
+0	srai x5,x6,3	OK	40335293
+0	lui x5,0x1000	OK	010002B7
+0	lui x5,1048575	OK	FFFFF2B7
+0	lui x5,1048576	ERR	The immediate value is out of range
+16	auipc x7,4096	OK	01000397
+0	nop	OK	00000013
+0	nop x1	ERR	Expected no arguments
+0	li x1,5	OK	00500093
+0	li ra,-2048	OK	80000093
+0	mv x1,x2	OK	00010093
+0	not x1,x2	OK	FFF14093
+0	seqz x1,x2	OK	00113093
+0	add x1,x2,x3	OK	003100B3
+0	sub x1,x2,x3	OK	403100B3
+0	sll x1,x2,x3	OK	003110B3
+0	slt x1,x2,x3	OK	003120B3
+0	sltu x1,x2,x3	OK	003130B3
+0	xor x1,x2,x3	OK	003140B3
+0	srl x1,x2,x3	OK	003150B3
+0	sra x1,x2,x3	OK	403150B3
+0	or x1,x2,x3	OK	003160B3
+0	and x1,x2,x3	OK	003170B3
+0	snez x1,x2	OK	002030B3
+0	add x1,x2	ERR	Expected three arguments
+16	beq x1,x2,pc+8	OK	00208463
+16	bne x1,x2,pc-8	OK	FE209CE3
+16	blt x1,x2,pc+4	OK	0020C263
+16	bge x1,x2,pc+4	OK	0020D263
+16	bltu x1,x2,pc+4	OK	0020E263
+16	bgeu x1,x2,pc+4	OK	0020F263
+16	beq x1,x2,pc+2048	ERR	The immediate value is out of range
+0	jal x1,pc+16	OK	010000EF
+0	jalr x1,x2,4	OK	004100E7
+0	jalr x1,x2,1024	ERR	The immediate value is out of range
+0	j pc+8	OK	0080006F
+0	jr x5	OK	00028067
+0	ret	OK	00008067
+0	ret x1	ERR	Expected no arguments
+16	beqz x1,pc+8	OK	00008463
+16	bnez x1,pc-4	OK	FE009EE3
+0	lb x1,0(x2)	OK	00010083
+0	lh x1,2(x2)	OK	00211083
+0	lw x3,4(x2)	OK	00412183
+0	lbu x1,-1(x2)	OK	FFF14083
+0	lhu x1,2047(x2)	OK	7FF15083
+0	sb x3,1(sp)	OK	003100A3
+0	sh x3,2(sp)	OK	00311123
+0	sw x3,8(sp)	OK	00312423
+0	sw x3,2048(sp)	ERR	The immediate value is out of range
+0	lw x1,x2	ERR	Expected an immediate indexed register, e.g. 5(x1)
+0	mul x1,x2,x3	OK	023100B3
+0	mulh x1,x2,x3	OK	023110B3
+0	mulhsu x1,x2,x3	OK	023120B3
+0	mulhu x1,x2,x3	OK	023130B3
+0	div x1,x2,x3	OK	023140B3
+0	divu x1,x2,x3	OK	023150B3
+0	rem x1,x2,x3	OK	023160B3
+0	remu x1,x2,x3	OK	023170B3
+0	ecall	OK	00000073
+0	ebreak	OK	00100073
+0	mret	OK	30200073
+0	ecall x1	ERR	Expected no arguments
+0	csrrw x1,0x300,x2	OK	300110F3
+0	csrrs x1,0x300,x2	OK	300120F3
+0	csrrc x1,0x300,x2	OK	300130F3
+0	csrrwi x1,0x300,5	OK	3002D0F3
+0	csrrsi x1,0x300,31	OK	300FE0F3
+0	csrrci x1,0x300,32	ERR	Expected an immediate value | Unknown opcode
+0	csrrw x1,mstatus,x2	OK	300110F3
+0	csrw 0x300,x2	OK	30011073
+0	csrs mstatus,x2	OK	30012073
+0	csrc 0x300,x2	OK	30013073
+0	csrwi 0x300,7	OK	3003D073
+0	csrsi 0x300,7	OK	3003E073
+0	csrci 0x300,7	OK	3003F073
+0	csrrw x1,0x300	ERR	Unknown opcode
+0	csrw 0x300,x2,x3	ERR	Unknown opcode
+0	fence	ERR	Unsupported asm opcode
+0	fence.tso	ERR	Unsupported asm opcode

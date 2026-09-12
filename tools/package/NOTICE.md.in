@@ -1,0 +1,77 @@
+# logisim-evolved — legal notices
+
+*Substituted from `tools/package/NOTICE.md.in` by `tools/package/build-app.sh`. Installed at
+`logisim-evolved.app/Contents/Resources/NOTICE.md`.*
+
+Version @SHORT_VERSION@ (build @BUILD_VERSION@), from source revision `@REVISION@`.
+
+## This is a modified version
+
+**logisim-evolved** is a modified version of
+[**logisim-evolution**](https://github.com/logisim-evolution/logisim-evolution) — an
+independent rewrite in Swift for macOS, begun on 4 September 2026 and still in progress. It
+targets upstream release **4.1.0**.
+
+It is **not** the original program, and it is neither endorsed by nor affiliated with the
+logisim-evolution project or its developers. Bugs in this translation are not theirs.
+
+*(GNU GPL version 3, section 5(a): prominent notice of modification, carrying a relevant date.)*
+
+## Copyright
+
+- Copyright © 2001–2024 Logisim-evolution developers.
+- Original Logisim by Carl Burch, Hendrix College, USA.
+- The Swift and macOS translation, © 2026 Closiq Inc.; written by Erzheng (Erwin) Zhang.
+
+The logisim-evolution project credits Moshe Berman, Theldo Cruz Franqueira, Zhao Hanyuan,
+David H. Hutchens, Theo Kluter, Torsten Maehne, Tom Niget, Marcin Orłowski, Kevin Walsh and
+Liu Yuchen, and others — see
+<https://github.com/logisim-evolution/logisim-evolution/blob/v4.1.0/docs/credits.md>.
+
+Forked from work at Berner Fachhochschule | Haute école spécialisée bernoise, College of the
+Holy Cross, Haute école d'ingénierie et de gestion du canton de Vaud, and Haute école du
+paysage, d'ingénierie et d'architecture de Genève.
+
+## Licence
+
+logisim-evolved is free software: you may redistribute it and modify it under the terms of
+the **GNU General Public License, version 3**, as published by the Free Software Foundation.
+
+Upstream grants GPLv3 without an "or any later version" clause, so this port is
+**GPL-3.0-only** and permanently cannot be relicensed.
+
+The complete licence text ships beside this file as `LICENSE.md`, and is also shown in the
+application's About window under the **Licence** tab.
+
+*(Section 5(b), and section 5(d)'s "how to view a copy of this License".)*
+
+## No warranty
+
+This program is distributed in the hope that it will be useful, but with **ABSOLUTELY NO
+WARRANTY** — without even the implied warranty of merchantability or fitness for a particular
+purpose. See sections 15 and 16 of the Licence.
+
+## Source
+
+@SOURCE_OFFER@
+
+*(Section 6. Corresponding Source includes the whole build pipeline — `tools/package/` and
+`swift/Package.swift` as well as the Swift sources — not the sources alone.)*
+
+## Upstream artwork reused in this port
+
+The logic-gate, Select, wiring and Pin glyphs in the toolbar and component explorer are
+logisim-evolution's own icon drawings, transcribed from the 4.1.0 release as vector geometry
+(`AbstractGate.paintIconANSI` and `paintIconBufferAnsi`, and the matching painters in
+`gui.icons`, `tools` and `std.wiring`). They are upstream's artwork, reused under the same
+licence, not this port's design.
+
+The application's own mark and icon are **not** upstream's logo, which is their trade mark and
+is not licensed to this port by the GPL — section 7(e) expressly contemplates trade-mark terms.
+This build uses its own mark, name, bundle identifier and document type.
+
+## Known divergences from upstream 4.1.0
+
+Java component libraries (`.jar`), the vendor FPGA toolchains (Xilinx ISE and Vivado, Intel
+Quartus) and the TCL console are not available in this build. Circuits that use them still
+open, and their components are preserved exactly on save rather than being silently discarded.

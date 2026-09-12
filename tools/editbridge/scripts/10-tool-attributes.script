@@ -1,0 +1,11 @@
+# Tool attributes, which are the DEFAULTS FOR THE NEXT PLACEMENT rather than a property of
+# any component. Both sides write the currently selected tool's own attribute set -- Java the
+# library instance, this port the canvas tool the controller upgraded it into -- and then place
+# twice, so the file shows both that the attributes reached the first component and that they
+# survived to the second. A tool whose attributes are rebuilt per placement writes two bare
+# gates here.
+tool	add:AND Gate
+toolattr	facing	north
+toolattr	inputs	3
+click	300	200
+click	400	200

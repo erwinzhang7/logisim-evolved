@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Info.plist.in — the template for logisim-evolved.app/Contents/Info.plist.
+  Part of logisim-evolved. Derived from logisim-evolution, GPL-3.0-only. See LICENSE.md.
+
+  @TOKENS@ are substituted by tools/package/build-app.sh. Nothing else in this file is
+  computed; every literal below is a decision, and the ones that carry legal weight are
+  commented with the decision that forced them.
+
+  Read alongside /Applications/Logisim-evolution.app/Contents/Info.plist, which is what
+  upstream's jpackage build actually emits. The differences from it are deliberate:
+
+    upstream                              here                                    why
+    CFBundleIdentifier com.cburch.logisim app.closiq.logisim-evolved              D10: own bundle ID
+    UTExported com.cburch.logisim.circ    app.closiq.logisim-evolved.circuit      D10: own UTI
+    mime application/x-logisim-circuit    not claimed on our exported type        D10: explicitly forbidden
+    LSIsAppleDefaultForType true          absent                                  we do not own the type
+    UTTypeConformsTo public.data          public.xml                              .circ *is* XML; matches
+                                                                                  LogisimDocumentType.circuit
+    LSMinimumSystemVersion 10.11          26.0                                    Package.swift platforms
+    NSMicrophoneUsageDescription present  absent                                  Buzzer plays; never records
+-->
+<plist version="1.0">
+<dict>
+  <key>CFBundleDevelopmentRegion</key>
+  <string>en</string>
+
+  <!-- The binary is copied in as `logisim-evolved`, dropping SwiftPM's `-app` suffix: that
+       suffix exists to name a *product* in Package.swift, and it would otherwise surface in
+       Activity Monitor and in crash reports as the process name. -->
+  <key>CFBundleExecutable</key>
+  <string>logisim-evolved</string>
+
+  <!-- D10: a distinct app name. Exactly 15 characters, which is the CFBundleName limit. -->
+  <key>CFBundleName</key>
+  <string>logisim-evolved</string>
+  <key>CFBundleDisplayName</key>
+  <string>logisim-evolved</string>
+
+  <!-- D10: own bundle ID. `erwin.rest` is a domain this project's author controls, so the
+       reverse-DNS prefix is real rather than squatted. It matches the prefix already
+       hard-coded in LogisimDocumentType.identifier — those two must never drift apart. -->
+  <key>CFBundleIdentifier</key>
+  <string>app.closiq.logisim-evolved</string>
+
+  <key>CFBundleInfoDictionaryVersion</key>
+  <string>6.0</string>
+  <key>CFBundlePackageType</key>
+  <string>APPL</string>
+  <key>CFBundleSignature</key>
+  <string>????</string>
+
+  <!-- AboutFacts.portVersion reads both of these out of Bundle.main and falls back to
+       "0.1.0-dev" when there is no bundle. The pre-release suffix is kept here on purpose:
+       AboutFacts documents that the port is not at parity with 4.1.0, and a bundle that
+       reported a bare "0.1.0" would quietly delete that caveat from the About window. -->
+  <key>CFBundleShortVersionString</key>
+  <string>@SHORT_VERSION@</string>
+  <key>CFBundleVersion</key>
+  <string>@BUILD_VERSION@</string>
+
+  <key>CFBundleIconFile</key>
+  <string>logisim-evolved</string>
+
+  <key>LSMinimumSystemVersion</key>
+  <string>26.0</string>
+  <key>LSApplicationCategoryType</key>
+  <string>public.app-category.education</string>
+  <key>NSHighResolutionCapable</key>
+  <true/>
+  <key>NSSupportsAutomaticGraphicsSwitching</key>
+  <true/>
+  <key>NSPrincipalClass</key>
+  <string>NSApplication</string>
+
+  <!-- GPLv3 §5(a) and §5(b), on the surface Finder's Get Info panel shows. The About window
+       carries the full notice set (AboutFacts); this is the copy that survives when someone
+       inspects the bundle without launching it, which is exactly the case §5 is about. -->
+  <key>NSHumanReadableCopyright</key>
+  <string>@COPYRIGHT@</string>
+
+  <!-- ── Document types ───────────────────────────────────────────────────────────────
+       Two entries, and the split is the whole D10 compliance story for file handling.
+
+       1. Our own exported type. We are its Owner because we declare it.
+       2. Upstream's `com.cburch.logisim.circ`, IMPORTED, ranked Alternate. Importing is how
+          macOS lets an app declare "I understand a type someone else owns" without claiming
+          it. A `.circ` written before this app existed, or by upstream's build, is already
+          tagged with upstream's UTI on that Mac; without this entry those files would not
+          open by double-click at all. Ranking it Owner would be a false claim.
+  -->
+  <key>CFBundleDocumentTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleTypeName</key>
+      <string>Logisim circuit</string>
+      <key>CFBundleTypeRole</key>
+      <string>Editor</string>
+      <key>CFBundleTypeIconFile</key>
+      <string>logisim-evolved-circuit</string>
+      <key>LSHandlerRank</key>
+      <string>Owner</string>
+      <key>LSItemContentTypes</key>
+      <array>
+        <string>app.closiq.logisim-evolved.circuit</string>
+      </array>
+    </dict>
+    <dict>
+      <key>CFBundleTypeName</key>
+      <string>Logisim circuit (logisim-evolution)</string>
+      <key>CFBundleTypeRole</key>
+      <string>Editor</string>
+      <key>CFBundleTypeIconFile</key>
+      <string>logisim-evolved-circuit</string>
+      <key>LSHandlerRank</key>
+      <string>Alternate</string>
+      <key>LSItemContentTypes</key>
+      <array>
+        <string>com.cburch.logisim.circ</string>
+      </array>
+    </dict>
+  </array>
+
+  <!-- Must stay identical to LogisimDocumentType.identifier and to what
+       `UTType(exportedAs:conformingTo:)` is given there — SwiftUI's DocumentGroup resolves
+       the type through LaunchServices, so a mismatch produces an app that opens nothing and
+       reports no error. `public.xml` because a .circ genuinely is an XML document; upstream
+       says `public.data`, which is true but tells Quick Look and Spotlight nothing.
+
+       No `public.mime-type` tag: D10 forbids claiming upstream's
+       `application/x-logisim-circuit`, and inventing a second MIME type for the same bytes
+       would fragment the format for no one's benefit. -->
+  <key>UTExportedTypeDeclarations</key>
+  <array>
+    <dict>
+      <key>UTTypeIdentifier</key>
+      <string>app.closiq.logisim-evolved.circuit</string>
+      <key>UTTypeDescription</key>
+      <string>Logisim circuit</string>
+      <key>UTTypeIconFile</key>
+      <string>logisim-evolved-circuit</string>
+      <key>UTTypeConformsTo</key>
+      <array>
+        <string>public.xml</string>
+      </array>
+      <key>UTTypeTagSpecification</key>
+      <dict>
+        <key>public.filename-extension</key>
+        <array>
+          <string>circ</string>
+        </array>
+      </dict>
+    </dict>
+  </array>
+
+  <!-- Upstream's type, reproduced exactly as upstream declares it in
+       /Applications/Logisim-evolution.app/Contents/Info.plist — including the MIME tag,
+       because an imported declaration describes somebody else's type and editing it would
+       make the description wrong. -->
+  <key>UTImportedTypeDeclarations</key>
+  <array>
+    <dict>
+      <key>UTTypeIdentifier</key>
+      <string>com.cburch.logisim.circ</string>
+      <key>UTTypeDescription</key>
+      <string>Logisim circuit file</string>
+      <key>UTTypeIconFile</key>
+      <string>logisim-evolved-circuit</string>
+      <key>UTTypeConformsTo</key>
+      <array>
+        <string>public.data</string>
+      </array>
+      <key>UTTypeTagSpecification</key>
+      <dict>
+        <key>public.filename-extension</key>
+        <array>
+          <string>circ</string>
+        </array>
+        <key>public.mime-type</key>
+        <array>
+          <string>application/x-logisim-circuit</string>
+        </array>
+      </dict>
+    </dict>
+  </array>
+</dict>
+</plist>

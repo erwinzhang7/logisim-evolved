@@ -1,0 +1,12 @@
+# Move a component that has a wire attached, so the move has to RECONNECT it.
+# SelectTool.mouseReleased builds a MoveGesture and calls forceRequest(dx,dy); the
+# Connector then routes replacement wire around the displaced port and hands back a
+# ReplacementMap that SelectionActions.translate folds into the mutation. That search --
+# AvoidanceMap, SearchNode, the priority queue -- is a whole ported subsystem whose only
+# externally visible output is the set of wires this file ends up containing.
+tool	add:AND Gate
+click	300	200
+tool	wiring
+drag	400	200	300	200
+tool	edit
+drag	280	200	280	240

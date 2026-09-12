@@ -1,0 +1,8 @@
+# Undo then redo, so the redo log is exercised too: place, place, undo the second
+# placement, redo it.
+tool	add:AND Gate
+click	300	200
+tool	add:NOT Gate
+click	300	300
+undo
+redo

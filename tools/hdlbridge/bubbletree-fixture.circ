@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project source="4.1.0" version="1.0">
+  A SYNTHETIC FIXTURE for the Swift port's FPGA bubble-tree gate. Hand-written, not corpus
+  derived and not coursework: it exists to reach three paths of
+  Netlist.constructHierarchyTree that no harvested circuit reaches.
+
+  1. A subcircuit that CONTAINS bubbles, so a BUB SUB line carries a real global range instead
+     of "-". Every harvested circuit puts its LEDs and buttons at the toplevel, so in that
+     oracle every BUB SUB has all three counts zero and the subcircuit arithmetic is inert.
+  2. The SAME subcircuit instantiated TWICE, which is the only way to reach
+     enumerateGlobalBubbleTree at all: constructHierarchyTree recurses on the first instance of
+     a circuit and takes the enumerate path on every later one.
+  3. TWO levels of nesting, so enumerateGlobalBubbleTree's own recursion runs and the
+     "startInputID + comp.getLocalBubbleInputStartId()" accumulation is exercised.
+
+  On (3), the offset must be NON-ZERO or the term is invisible: `middle` therefore holds TWO
+  leaf instances, so the second one's local start ids are 1 rather than 0. A first draft held
+  one, and deleting the "+ getLocalBubbleInputStartId()" term from the port changed nothing
+  because 0 + 0 == 0. That is the difference between a fixture that reaches a line and a fixture
+  that can fail on it.
+
+  Input bubbles (Button), output bubbles (LED) and a multi-bubble component (7-Segment Display,
+  eight outputs) are mixed so the three counters advance independently rather than in lockstep.
+
+  DELIBERATELY UNWIRED. Bubble enumeration walks mySubCircuits and myComponents and never looks
+  at connectivity, and a subcircuit instance's port coordinates depend on its generated
+  appearance - not something to hand-compute in a fixture. Unconnected pins are a DRC *warning*
+  upstream, not an error, so the file passes DRC with nothing joined. An earlier draft did wire
+  things up and failed DRC with a short circuit, because a Pin and a Button on one net are two
+  sources.
+
+  <lib desc="#Wiring" name="0"/>
+  <lib desc="#I/O" name="5"/>
+  <main name="top"/>
+  <options/>
+  <mappings/>
+  <toolbar/>
+
+  <circuit name="leaf">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="leaf"/>
+    <comp lib="5" loc="(150,50)" name="Button">
+      <a name="label" val="press"/>
+    </comp>
+    <comp lib="5" loc="(150,150)" name="LED">
+      <a name="label" val="lamp"/>
+    </comp>
+  </circuit>
+
+  <circuit name="middle">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="middle"/>
+    <comp lib="5" loc="(50,150)" name="LED">
+      <a name="label" val="midlamp"/>
+    </comp>
+    <comp loc="(250,50)" name="leaf">
+      <a name="label" val="inner"/>
+    </comp>
+    <comp loc="(250,150)" name="leaf">
+      <a name="label" val="other"/>
+    </comp>
+  </circuit>
+
+  <circuit name="top">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="top"/>
+    <comp lib="5" loc="(50,350)" name="7-Segment Display">
+      <a name="label" val="digit"/>
+    </comp>
+    <comp loc="(300,50)" name="middle">
+      <a name="label" val="first"/>
+    </comp>
+    <comp loc="(300,150)" name="middle">
+      <a name="label" val="second"/>
+    </comp>
+    <comp loc="(300,250)" name="leaf">
+      <a name="label" val="bare"/>
+    </comp>
+  </circuit>
+</project>

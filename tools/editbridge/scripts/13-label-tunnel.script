@@ -1,0 +1,32 @@
+# Board #78, ttl-tunnel: a Tunnel placed, labelled, and re-faced.
+#
+# WHAT THIS ROW DOES AND DOES NOT GATE — read before trusting it.
+#
+# The script this row was commissioned as ("place a Tunnel, CLICK ITS LABEL, retype it, commit
+# with Return") cannot be written against the 4.1.0 oracle as the harness stands. Measured, not
+# assumed — that exact script was written and run, and the bridge answered:
+#
+#   FAIL 13-label-tunnel.script: NullPointerException: Cannot invoke
+#   "java.awt.Graphics.getFontMetrics(java.awt.Font)" because "g" is null
+#
+# `TextTool.mousePressed` (TextTool.java:270-291) builds a `ComponentUserEvent` and hands it to
+# `InstanceTextField.getTextCaret`, whose first two lines are `canvas = event.getCanvas();
+# final var gfx = canvas.getGraphics();` (InstanceTextField.java:101-102). The bridge's `Canvas`
+# is a JPanel that was never added to a displayable window, so `getGraphics()` is null, and
+# `field.getBounds(gfx)` dereferences it. The bridge's own `Graphics` (EditBridge.java:212, a
+# BufferedImage context) is passed to `mousePressed` but the caret path never sees it — TextTool
+# re-fetches from the canvas. Fixing that is a change to EditBridge.java, which this task does
+# not own. Second, independent blocker: the script language has no way to type a character or
+# press Return — `key` accepts `delete` and `backspace` and nothing else, on BOTH sides
+# (EditBridge.java:332-336, EditParityTests.swift:208-214) — so even with a caret open, no text
+# could be entered. Both are reported in the task's final message.
+#
+# So this row gates what IS expressible: that a Tunnel placed and labelled through the real
+# editor serialises exactly as 4.1.0 does, including the FACING change that re-runs
+# `TunnelAttributes.configureLabel()` and re-derives the arrow bounds around the label. It does
+# **not** exercise `Tunnel.labelPlacement`, and it would stay green if that placement were wrong.
+# The unit gate for the placement is `swift/Tests/LogisimStdTests/TtlTunnelLabelPlacementTests.swift`.
+tool	add:Tunnel
+click	100	100
+setattr	100	100	label	T1
+setattr	100	100	facing	north

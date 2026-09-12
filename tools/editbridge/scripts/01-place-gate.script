@@ -1,0 +1,4 @@
+# Place one AND gate. The smallest thing an editor can do, and the one every other
+# script depends on: AddTool -> CircuitMutation -> Project.doAction -> XmlWriter.
+tool	add:AND Gate
+click	300	200

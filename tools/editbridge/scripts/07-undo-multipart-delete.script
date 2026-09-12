@@ -1,0 +1,12 @@
+# One action that removes three objects, then undo. The undo must put all three back,
+# in the same order the writer emits, or the bytes differ from the pre-delete file.
+tool	add:AND Gate
+click	300	200
+tool	add:NOT Gate
+click	300	300
+tool	wiring
+drag	200	190	250	190
+tool	edit
+drag	150	150	350	350
+key	delete
+undo

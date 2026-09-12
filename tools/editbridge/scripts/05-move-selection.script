@@ -1,0 +1,10 @@
+# Rubber-band select two components and drag the selection. Drives SelectTool through
+# EditTool: press on background -> RECT_SELECT, then press inside the selection -> MOVING,
+# release -> SelectionActions.translate with a MoveGesture-computed ReplacementMap.
+tool	add:AND Gate
+click	300	200
+tool	add:NOT Gate
+click	300	300
+tool	edit
+drag	150	150	350	350
+drag	280	200	280	240

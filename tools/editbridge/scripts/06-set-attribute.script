@@ -1,0 +1,6 @@
+# Change an attribute through the attribute table (SetAttributeAction), then change a
+# second one on the same component so the two actions do not merge.
+tool	add:AND Gate
+click	300	200
+setattr	300	200	facing	south
+setattr	300	200	inputs	3
